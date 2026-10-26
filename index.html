@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kalyanamitta Session Planner</title>
+<meta name="description" content="A guide for Kalyanamitta facilitators to plan a Dhamma discussion.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Roboto+Mono:wght@400;500&family=Rubik:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="hero"><div class="wrap">
+  <h1>Kalyanamitta</h1>
+  <p class="sub">A guide to plan a Dhamma discussion</p>
+  <p class="quote"><i>“The gift of Dhamma excels all gifts.”</i>Dhammapada 354</p>
+</div></div>
+
+<nav class="progress" aria-label="Progress"><div class="wrap">
+  <ol class="track" id="track">
+    <li class="fill" id="fill" aria-hidden="true"></li>
+    <li><button class="dot" data-go="0" aria-label="Step 1: Topic">1</button><span>Topic</span></li>
+    <li><button class="dot" data-go="1" aria-label="Step 2: Reading">2</button><span>Reading</span></li>
+    <li><button class="dot" data-go="2" aria-label="Step 3: Summary">3</button><span>Summary</span></li>
+  </ol>
+  <p class="saved" id="saved" aria-live="polite"></p>
+</div></nav>
+
+<main class="wrap">
+
+<!-- 1 TOPIC -->
+<section class="screen" id="s-0">
+  <p class="hello">You don’t need to be an expert. Let’s learn together.</p>
+
+  <div class="card ai-card">
+    <div><h2>Plan with AI</h2>
+      <p class="hint">Copy the prompt into ChatGPT, Claude, or Gemini. When it’s done, paste its final plan here to fill in the boxes.</p></div>
+    <div class="actions"><button class="btn ai" data-prompt="plan">Copy AI prompt</button><button class="btn" data-paste="plan">Paste AI plan</button></div>
+  </div>
+
+  <div class="card">
+    <h2>Need an idea?</h2>
+    <div class="ideas">
+      <details><summary>Something happening now</summary><ul><li>Ghost Month</li><li>Vesak Day</li><li>Qing Ming</li><li>New Year</li></ul></details>
+      <details><summary>Buddhist basics we know by name</summary><ul><li>Four Noble Truths</li><li>Kamma</li><li>Rebirth</li><li>Merit</li><li>Mettā</li><li>Five Precepts</li><li>Dependent Origination</li></ul></details>
+      <details><summary>Habits and rituals</summary><ul><li>Why do we make offerings?</li><li>Why do we chant?</li><li>Why do we share merit?</li><li>Why do we bow?</li><li>Buddhist funeral practices</li><li>Observing Uposatha</li></ul></details>
+      <details><summary>Cosmology and stories</summary><ul><li>31 realms</li><li>Four lower realms</li><li>Devas and petas</li><li>Jātaka and Dhammapada stories</li><li>The Buddha and his disciples</li></ul></details>
+      <details><summary>Your own curiosity</summary><ul><li>A YouTube talk by Ajahn Brahm or a Dhammadesana you enjoyed</li><li>Something you know and want to share</li><li>A question you can’t answer yet</li></ul></details>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Your session</h2>
+    <div class="field"><label for="f-topic">Topic</label>
+      <input id="f-topic" data-field="topic" placeholder="e.g. Beyond Ghost Month: Fear, Four Lower Realms, and Merit"></div>
+    <div class="field"><label for="f-why">Why this topic?</label>
+      <textarea id="f-why" data-field="why" placeholder="e.g. We hear many ghost stories this month. I’ve always wondered what the suttas actually say, so I want to learn about it together."></textarea></div>
+    <div class="field"><label for="f-mainq">Main question we’ll explore</label>
+      <input id="f-mainq" data-field="mainq" placeholder="e.g. What are petas, and can we really help them?"></div>
+    <div class="field"><label for="f-opening">Opening questions <span class="time">15–20 min</span></label>
+      <small>Open with a question for people to share to allow different views to come out.</small>
+      <textarea id="f-opening" data-field="opening" class="big" placeholder="e.g. What have you heard about ghosts during Ghost Month?&#10;Have you ever felt afraid of something you couldn’t see? What did you do?"></textarea></div>
+    <div class="field"><label for="f-points">Main points <span class="time">40–45 min</span></label>
+      <small>2–4 teachings, suttas, or stories to explore.</small>
+      <textarea id="f-points" data-field="points" class="big" placeholder="e.g. 1. Who are petas, and how does one become one?&#10;2. Facing fear with mettā (Karaniya Mettā Sutta)&#10;3. Can we help the departed? (Tirokudda Sutta)"></textarea></div>
+    <div class="field"><label for="f-takeaway">Takeaway <span class="time">10 min</span></label>
+      <small>Something to reflect on or practise after the session.</small>
+      <textarea id="f-takeaway" data-field="takeaway" placeholder="e.g. A short mettā practice, one habit to try, one precept to keep more carefully, or an act of generosity."></textarea></div>
+  </div>
+  <div class="nav"><button class="btn reset" data-restart>Start over</button><button class="btn go" data-go="1">Next →</button></div>
+</section>
+
+<!-- 2 READING -->
+<section class="screen" id="s-1">
+  <div class="card ai-card">
+    <div><h2>Research with AI</h2>
+      <p class="hint">The prompt uses your answers from the Topic page. Paste the AI’s answer back here to fill in the reading list and notes.</p></div>
+    <div class="actions"><button class="btn ai" data-prompt="research">Copy research prompt</button><button class="btn" data-paste="research">Paste AI research</button></div>
+  </div>
+
+  <div class="card">
+    <h2>Reading materials</h2>
+    <p class="hint">The talks, suttas, and articles you used. Start with a trusted Bhante’s talk, then read the sutta it mentions.</p>
+    <div class="links"><a href="https://suttacentral.net" target="_blank" rel="noopener">SuttaCentral ↗</a><a href="https://www.accesstoinsight.org" target="_blank" rel="noopener">Access to Insight ↗</a></div>
+    <div class="rows" id="rows-reading"></div>
+    <button class="add" id="add-reading">+ Add a source</button>
+    <div class="field"><label for="f-notes">Personal notes</label>
+      <small>Only for you. Not shared with attendees.</small>
+      <textarea id="f-notes" data-field="notes" class="big" placeholder="e.g. The story of the monks frightened by tree spirits is from the commentary, not the sutta itself.&#10;If asked about merit and rebirth: in Khp 7 the departed relatives receive merit while in the peta realm."></textarea></div>
+  </div>
+  <div class="card">
+    <h2>Pre-reading for attendees</h2>
+    <p class="hint">1–2 short sources to read before the session.</p>
+    <div class="rows" id="rows-pre"></div>
+  </div>
+  <div class="nav"><button class="btn" data-go="0">← Back</button><button class="btn go" data-go="2">See summary →</button></div>
+</section>
+
+<!-- 3 SUMMARY -->
+<section class="screen" id="s-2">
+  <article class="card doc" id="doc"></article>
+  <div class="actions"><button class="btn go" id="copy-summary">Copy summary</button><button class="btn" id="download">Download</button></div>
+  <div class="nav"><button class="btn" data-go="1">← Back</button><button class="btn reset" data-restart>Start over</button></div>
+</section>
+
+<div class="confirm" id="restart" hidden role="alertdialog" aria-labelledby="restart-q">
+  <p id="restart-q">Start over? This clears everything you’ve written.</p>
+  <div class="actions"><button class="btn" id="restart-no">Cancel</button><button class="btn yes" id="restart-yes">Yes, start over</button></div>
+</div>
+</main>
+
+<div class="scrim" id="scrim"></div>
+<aside class="sheet" id="sheet" aria-labelledby="sheet-title" role="dialog">
+  <div class="sheet-head"><h2 id="sheet-title"></h2><button class="btn" id="sheet-close">Close</button></div>
+  <p class="hint" id="sheet-hint"></p>
+  <pre id="sheet-prompt" tabindex="0"></pre>
+  <textarea id="sheet-paste" class="paste" aria-label="AI answer" placeholder="Paste the AI’s final answer here"></textarea>
+  <button class="btn go" id="sheet-action"></button>
+  <p class="msg" id="sheet-msg" aria-live="polite"></p>
+  <p class="hint">Check every sutta reference on SuttaCentral. AI can make them up.</p>
+</aside>
+
+<script src="app.js"></script>
+</body>
+</html>
