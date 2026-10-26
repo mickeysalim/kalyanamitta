@@ -51,7 +51,6 @@ main { padding-block: 28px 72px; }
 .card { background: var(--paper); border: 3px solid var(--ink); border-radius: 4px; padding: 22px; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
 .card h2 { font-family: var(--display); font-weight: 400; font-size: 1.5rem; text-transform: uppercase; }
 .hint { color: var(--muted); font-size: .92rem; }
-.hello { background: var(--yellow); border: 3px solid var(--ink); border-radius: 4px; padding: 14px 18px; font-weight: 600; text-align: center; }
 .ai-card { background: #eaf2fc; border-color: var(--blue); }
 .ai-card h2 { color: var(--blue); font-size: 1.2rem; }
 .ai-card > div:first-child { display: flex; flex-direction: column; gap: 6px; }
@@ -122,6 +121,7 @@ input::placeholder, textarea::placeholder { color: var(--hint); font-style: ital
 .doc p { white-space: pre-wrap; }
 .doc a { color: var(--blue); word-break: break-word; }
 .doc .empty { color: var(--hint); font-style: italic; }
+.doc .closing { border-top: 2px solid var(--line); padding-top: 16px; text-align: center; font-weight: 600; }
 
 .confirm { margin-top: 18px; background: var(--paper); border: 3px solid var(--orange); border-radius: 4px; padding: 14px 18px; display: flex; gap: 12px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
 .confirm p { font-weight: 600; }

@@ -277,6 +277,7 @@
       sec.appendChild(body || el("p", "empty", "Not filled in yet"));
       doc.appendChild(sec);
     });
+    doc.appendChild(el("p", "closing", "You don’t need to be an expert. Let’s learn together."));
   }
 
   function summaryText() {
