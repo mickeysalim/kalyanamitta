@@ -4,6 +4,7 @@
   var KEY = "kalyanamitta.plan.v1";
   var TEXT_FIELDS = ["topic", "why", "mainq", "opening", "points", "takeaway", "notes"];
   var PRE_ROWS = 2;
+  var REQUIRED = ["topic", "mainq", "opening", "points", "takeaway"];
 
   // Section order and labels shared by the summary, the copied text and the AI output format.
   var SECTIONS = [
@@ -104,6 +105,46 @@
     save();
   }
 
+  // ---------- Required fields ----------
+  function missing() {
+    return REQUIRED.filter(function (k) { return !plan[k].trim(); });
+  }
+  function markField(key, bad) {
+    var input = $('[data-field="' + key + '"]');
+    var field = input.closest(".field");
+    field.classList.toggle("invalid", bad);
+    input.setAttribute("aria-invalid", bad ? "true" : "false");
+    var err = field.querySelector(".error");
+    if (bad && !err) {
+      err = el("p", "error", "Please fill this in.");
+      err.id = input.id + "-error";
+      input.setAttribute("aria-describedby", err.id);
+      input.insertAdjacentElement("afterend", err);
+    } else if (!bad && err) {
+      err.remove();
+      input.removeAttribute("aria-describedby");
+    }
+  }
+  function showGapCount() {
+    var n = missing().length;
+    $("#topic-error").textContent = n
+      ? "Please fill in the required boxes before moving on (" + n + " left)."
+      : "";
+  }
+  // Returns true when the Topic page is complete; otherwise shows what is missing.
+  function checkTopic() {
+    var gaps = missing();
+    REQUIRED.forEach(function (k) { markField(k, gaps.indexOf(k) >= 0); });
+    showGapCount();
+    if (gaps.length) {
+      if (plan.step !== 0) go(0);
+      var first = $('[data-field="' + gaps[0] + '"]');
+      first.scrollIntoView({ block: "center", behavior: "smooth" });
+      first.focus({ preventScroll: true });
+    }
+    return !gaps.length;
+  }
+
   // ---------- Fields ----------
   function fillFields() {
     $$("[data-field]").forEach(function (el) { el.value = plan[el.dataset.field] || ""; });
@@ -115,6 +156,10 @@
     var el = e.target;
     if (el.dataset && el.dataset.field) {
       plan[el.dataset.field] = el.value;
+      if (REQUIRED.indexOf(el.dataset.field) >= 0 && el.value.trim()) {
+        markField(el.dataset.field, false);
+        if ($("#topic-error").textContent) showGapCount();
+      }
       save();
     } else if (el.dataset && el.dataset.kind) {
       plan[el.dataset.kind][Number(el.dataset.i)][el.dataset.part] = el.value;
@@ -257,6 +302,7 @@
       }
       out.push("");
     });
+    out.push("You don’t need to be an expert. Let’s learn together.");
     return out.join("\n").trim() + "\n";
   }
 
@@ -532,6 +578,8 @@
       return;
     }
     fillFields();
+    REQUIRED.forEach(function (k) { if (plan[k].trim()) markField(k, false); });
+    if ($("#topic-error").textContent) showGapCount();
     save();
     msg.textContent = "Filled in: " + filled.join(", ") + ".";
     msg.className = "msg ok";
@@ -541,7 +589,11 @@
   document.addEventListener("click", function (e) {
     var t = e.target.closest("[data-go],[data-prompt],[data-paste],[data-restart]");
     if (!t) return;
-    if (t.dataset.go != null) { go(t.dataset.go); window.scrollTo({ top: 0 }); }
+    if (t.dataset.go != null) {
+      if (Number(t.dataset.go) > 0 && !checkTopic()) return;
+      go(t.dataset.go);
+      window.scrollTo({ top: 0 });
+    }
     else if (t.dataset.prompt) openSheet("prompt-" + t.dataset.prompt);
     else if (t.dataset.paste) openSheet("paste-" + t.dataset.paste);
     else if (t.hasAttribute("data-restart")) {
@@ -555,6 +607,8 @@
   $("#restart-no").addEventListener("click", function () { $("#restart").hidden = true; });
   $("#restart-yes").addEventListener("click", function () {
     plan = blank();
+    REQUIRED.forEach(function (k) { markField(k, false); });
+    $("#topic-error").textContent = "";
     $$("details").forEach(function (d) { d.open = false; });
     fillFields();
     go(0);
@@ -565,5 +619,5 @@
   window.Kalyanamitta = { parseAnswer: parseAnswer, parseSources: parseSources, summaryText: summaryText };
 
   fillFields();
-  go(plan.step);
+  go(missing().length ? 0 : plan.step);
 })();

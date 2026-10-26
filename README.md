@@ -3,7 +3,7 @@
 A simple web app that helps Kalyanamitta facilitators plan a Dhamma discussion.
 
 ## Steps
-1. **Topic**: topic ideas, then the topic, why, main question, opening questions (15–20 min), main points (40–45 min) and takeaway (10 min).
+1. **Topic**: topic ideas, then the topic, why, main question, opening questions (15–20 min), main points (40–45 min) and takeaway (10 min). Everything except "Why this topic" is required before moving on.
 2. **Reading**: reading materials, personal notes, and 1–2 pre-reading sources for attendees.
 3. **Summary**: generated from the answers. Copy or download it.
 

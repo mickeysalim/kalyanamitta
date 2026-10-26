@@ -32,8 +32,6 @@
 
 <!-- 1 TOPIC -->
 <section class="screen" id="s-0">
-  <p class="hello">You don’t need to be an expert. Let’s learn together.</p>
-
   <div class="card ai-card">
     <div><h2>Plan with AI</h2>
       <p class="hint">Copy the prompt into ChatGPT, Claude, or Gemini. When it’s done, paste its final plan here to fill in the boxes.</p></div>
@@ -53,22 +51,24 @@
 
   <div class="card">
     <h2>Your session</h2>
-    <div class="field"><label for="f-topic">Topic</label>
-      <input id="f-topic" data-field="topic" placeholder="e.g. Beyond Ghost Month: Fear, Four Lower Realms, and Merit"></div>
+    <p class="hint"><span class="req">*</span> Required</p>
+    <div class="field"><label for="f-topic">Topic <span class="req">*</span></label>
+      <textarea id="f-topic" data-field="topic" class="short" rows="2" required placeholder="e.g. Beyond Ghost Month: Fear, Four Lower Realms, and Merit"></textarea></div>
     <div class="field"><label for="f-why">Why this topic?</label>
       <textarea id="f-why" data-field="why" placeholder="e.g. We hear many ghost stories this month. I’ve always wondered what the suttas actually say, so I want to learn about it together."></textarea></div>
-    <div class="field"><label for="f-mainq">Main question we’ll explore</label>
-      <input id="f-mainq" data-field="mainq" placeholder="e.g. What are petas, and can we really help them?"></div>
-    <div class="field"><label for="f-opening">Opening questions <span class="time">15–20 min</span></label>
+    <div class="field"><label for="f-mainq">Main question we’ll explore <span class="req">*</span></label>
+      <textarea id="f-mainq" data-field="mainq" class="short" rows="2" required placeholder="e.g. What are petas, and can we really help them?"></textarea></div>
+    <div class="field"><label for="f-opening">Opening questions <span class="req">*</span> <span class="time">15–20 min</span></label>
       <small>Open with a question for people to share to allow different views to come out.</small>
-      <textarea id="f-opening" data-field="opening" class="big" placeholder="e.g. What have you heard about ghosts during Ghost Month?&#10;Have you ever felt afraid of something you couldn’t see? What did you do?"></textarea></div>
-    <div class="field"><label for="f-points">Main points <span class="time">40–45 min</span></label>
+      <textarea id="f-opening" data-field="opening" required class="big" placeholder="e.g. What have you heard about ghosts during Ghost Month?&#10;Have you ever felt afraid of something you couldn’t see? What did you do?"></textarea></div>
+    <div class="field"><label for="f-points">Main points <span class="req">*</span> <span class="time">40–45 min</span></label>
       <small>2–4 teachings, suttas, or stories to explore.</small>
-      <textarea id="f-points" data-field="points" class="big" placeholder="e.g. 1. Who are petas, and how does one become one?&#10;2. Facing fear with mettā (Karaniya Mettā Sutta)&#10;3. Can we help the departed? (Tirokudda Sutta)"></textarea></div>
-    <div class="field"><label for="f-takeaway">Takeaway <span class="time">10 min</span></label>
+      <textarea id="f-points" data-field="points" required class="big" placeholder="e.g. 1. Who are petas, and how does one become one?&#10;2. Facing fear with mettā (Karaniya Mettā Sutta)&#10;3. Can we help the departed? (Tirokudda Sutta)"></textarea></div>
+    <div class="field"><label for="f-takeaway">Takeaway <span class="req">*</span> <span class="time">10 min</span></label>
       <small>Something to reflect on or practise after the session.</small>
-      <textarea id="f-takeaway" data-field="takeaway" placeholder="e.g. A short mettā practice, one habit to try, one precept to keep more carefully, or an act of generosity."></textarea></div>
+      <textarea id="f-takeaway" data-field="takeaway" required placeholder="e.g. A short mettā practice, one habit to try, one precept to keep more carefully, or an act of generosity."></textarea></div>
   </div>
+  <p class="msg err" id="topic-error" aria-live="polite"></p>
   <div class="nav"><button class="btn reset" data-restart>Start over</button><button class="btn go" data-go="1">Next →</button></div>
 </section>
 
@@ -101,6 +101,7 @@
 <!-- 3 SUMMARY -->
 <section class="screen" id="s-2">
   <article class="card doc" id="doc"></article>
+  <p class="hello">You don’t need to be an expert. Let’s learn together.</p>
   <div class="actions"><button class="btn go" id="copy-summary">Copy summary</button><button class="btn" id="download">Download</button></div>
   <div class="nav"><button class="btn" data-go="1">← Back</button><button class="btn reset" data-restart>Start over</button></div>
 </section>

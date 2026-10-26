@@ -74,9 +74,19 @@ details li { padding-block: 2px; }
 .field small { color: var(--muted); font-size: .88rem; }
 .time { font: 500 .75rem var(--mono); color: var(--muted); background: var(--soft); border-radius: 20px; padding: 1px 8px; margin-left: 6px; white-space: nowrap; }
 input, textarea { font: inherit; color: var(--ink); background: var(--soft); border: 2px solid var(--line); border-radius: 4px; padding: 10px 12px; width: 100%; }
-textarea { min-height: 80px; resize: vertical; }
+textarea { min-height: 104px; resize: vertical; }
 textarea.big { min-height: 140px; }
+textarea.short { min-height: 0; }
+.req { color: var(--orange); font-weight: 600; }
+.field.invalid input, .field.invalid textarea { border-color: #b3361d; background: #fdf0ec; }
+.field .error { color: #b3361d; font-size: .88rem; font-weight: 600; }
+#topic-error:empty { display: none; }
+#topic-error { background: var(--paper); border: 3px solid #b3361d; border-radius: 4px; padding: 10px 14px; }
 input::placeholder, textarea::placeholder { color: var(--hint); font-style: italic; opacity: 1; }
+@media (max-width: 560px) {
+  input, textarea { padding: 9px 10px; }
+  input::placeholder, textarea::placeholder { font-size: .8rem; }
+}
 
 .rows { display: flex; flex-direction: column; gap: 8px; }
 .row { display: grid; grid-template-columns: 1fr 1.3fr auto; gap: 8px; align-items: center; }
